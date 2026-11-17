@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 4 层 · 交互层 JavaScript | 建站学院</title>
+  <meta name="description" content="网站制作的第四层：DOM、事件、状态与数据请求，让页面真正活起来。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="javascript">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="plan.html">① 规划层</a>
+            <a href="html.html">② 结构层 HTML</a>
+            <a href="css.html">③ 样式层 CSS</a>
+            <a href="javascript.html">④ 交互层 JS</a>
+            <a href="deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="plan.html">规划</a>
+        <a href="html.html">结构</a>
+        <a href="css.html">样式</a>
+        <a href="javascript.html" data-page="javascript">交互</a>
+        <a href="deploy.html">部署</a>
+      </nav>
+      <a class="header-cta" href="deploy.html">下一层 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="crumb"><a href="../index.html">首页</a><span>/</span>五层详解<span>/</span>第 4 层</div>
+          <h1>④ 交互层：让页面活起来</h1>
+          <p>JavaScript 的核心工作只有三件：找到元素、监听事件、更新页面。本页的计数器就是一个真实运行的例子。</p>
+          <div class="badge-row"><span class="badge">难度 ★★★★☆</span><span class="badge">预计 60 分钟</span><span class="badge orig">原创插画</span></div>
+        </div>
+        <img class="page-illustration" src="../assets/img/layer-js.svg" alt="交互层插画：闪电、计数器卡片与鼠标点击涟漪">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <aside class="toc">
+          <div class="toc-title">本页目录</div>
+          <a href="#dom">找到元素</a>
+          <a href="#events">监听事件</a>
+          <a href="#state">状态与更新</a>
+          <a href="#data">获取数据</a>
+          <a href="#debug">调试与错误</a>
+          <a href="#checklist">交互清单</a>
+        </aside>
+
+        <article class="article">
+          <h2 id="dom">1. 找到要操作的元素</h2>
+          <p>浏览器把页面解析成一棵 DOM 树。JavaScript 先查询到节点，才能改变它。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-kw">const</span> title = document.<span class="c-fn">querySelector</span>(<span class="c-str">"h1"</span>);      <span class="c-com">// 第一个匹配项</span>
+<span class="c-kw">const</span> cards = document.<span class="c-fn">querySelectorAll</span>(<span class="c-str">".card"</span>);  <span class="c-com">// 所有匹配项</span>
+<span class="c-kw">const</span> btn   = document.<span class="c-fn">getElementById</span>(<span class="c-str">"hi"</span>);   <span class="c-com">// 按 id 查找</span>
+
+title.textContent = <span class="c-str">"新标题"</span>;
+cards.<span class="c-fn">forEach</span>(card =&gt; console.<span class="c-fn">log</span>(card));</code></pre>
+          </div>
+          <p>脚本要放在 <code>&lt;body&gt;</code> 末尾，或用 <code>DOMContentLoaded</code> 包起来，确保执行时元素已经存在。</p>
+
+          <h2 id="events">2. 监听事件：等用户操作</h2>
+          <p>事件是"发生了什么"的信号：点击、输入、滚动、提交表单都可以监听。三步走：找元素 → 注册监听 → 写处理函数。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code>btn.<span class="c-fn">addEventListener</span>(<span class="c-str">"click"</span>, <span class="c-kw">function</span> () {
+  <span class="c-com">// 用户点击时执行这里</span>
+});
+
+input.<span class="c-fn">addEventListener</span>(<span class="c-str">"input"</span>, (e) =&gt; {
+  console.<span class="c-fn">log</span>(e.target.value); <span class="c-com">// 实时读取输入内容</span>
+});</code></pre>
+          </div>
+          <div class="note"><strong>本站点自己就在用：</strong>顶部下拉菜单、代码标签切换、目录高亮、返回顶部按钮，全都是 <code>addEventListener</code> 在背后工作。</div>
+
+          <h2 id="state">3. 状态与更新：试试这个计数器</h2>
+          <p>所谓"状态"，就是程序记住的当前数据。下面的计数器把数字存在变量 <code>count</code> 里，每次点击修改它并更新页面显示。</p>
+          <div class="demo">
+            <div class="demo-box">
+              <button class="demo-btn secondary" id="demoMinus">− 1</button>
+              <div class="demo-count" id="demoCount">0</div>
+              <button class="demo-btn" id="demoPlus">+ 1</button>
+              <button class="demo-btn secondary" id="demoReset">重置</button>
+            </div>
+            <div class="demo-output" id="demoOutput">&gt; ready</div>
+          </div>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-kw">let</span> count = <span class="c-num">0</span>; <span class="c-com">// 状态</span>
+
+<span class="c-kw">function</span> <span class="c-fn">render</span>() {
+  countEl.textContent = count; <span class="c-com">// 把状态反映到界面</span>
+}
+plusBtn.<span class="c-fn">addEventListener</span>(<span class="c-str">"click"</span>, () =&gt; {
+  count += <span class="c-num">1</span>;
+  <span class="c-fn">render</span>();
+});</code></pre>
+          </div>
+          <p>这就是前端框架（React、Vue 等）最核心的思想：<strong>状态变化 → 重新渲染界面</strong>。框架只是把这套流程自动化了。</p>
+
+          <h2 id="data">4. 获取数据：fetch 入门</h2>
+          <p>当页面需要外部数据时，用 <code>fetch</code> 发请求。它是异步的——用 <code>async/await</code> 写起来最清晰。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-kw">async function</span> <span class="c-fn">loadData</span>() {
+  <span class="c-kw">try</span> {
+    <span class="c-kw">const</span> res = <span class="c-kw">await</span> <span class="c-fn">fetch</span>(<span class="c-str">"/api/posts"</span>);
+    <span class="c-kw">if</span> (!res.ok) <span class="c-kw">throw new</span> <span class="c-fn">Error</span>(<span class="c-str">"请求失败"</span>);
+    <span class="c-kw">const</span> data = <span class="c-kw">await</span> res.<span class="c-fn">json</span>();
+    console.<span class="c-fn">log</span>(data);
+  } <span class="c-kw">catch</span> (err) {
+    console.<span class="c-fn">error</span>(err); <span class="c-com">// 网络失败也要给用户提示</span>
+  }
+}
+<span class="c-fn">loadData</span>();</code></pre>
+          </div>
+          <p>纯静态站点不需要这一步；等到要接评论、表单提交或第三方 API 时，再回来学它也不迟。</p>
+
+          <h2 id="debug">5. 出错时怎么办</h2>
+          <ul class="points">
+            <li>按 F12 打开控制台，红色报错会给出文件名与行号；</li>
+            <li><code>Uncaught TypeError: xxx is not a function</code> —— 通常是拼错方法名或元素没找到；</li>
+            <li>代码没反应，先确认脚本是否成功加载（控制台输入 <code>document.scripts</code> 查看）；</li>
+            <li>用 <code>console.log()</code> 在关键位置打印变量，是最朴素也最有效的调试方式。</li>
+          </ul>
+          <div class="note warn"><strong>渐进增强原则：</strong>页面在没有 JavaScript 时也应当能读到主要内容。JS 用来"增强体验"，而不是承载全部内容。</div>
+
+          <h2 id="checklist">6. 交互完成清单</h2>
+          <div class="checklist">
+            <label><input type="checkbox" id="j1"><span>脚本在 DOM 加载后执行</span></label>
+            <label><input type="checkbox" id="j2"><span>用 addEventListener 而非内联 onclick</span></label>
+            <label><input type="checkbox" id="j3"><span>状态变更后有明确的界面更新</span></label>
+            <label><input type="checkbox" id="j4"><span>异步请求处理了失败情况</span></label>
+            <label><input type="checkbox" id="j5"><span>控制台无报错</span></label>
+            <label><input type="checkbox" id="j6"><span>禁用 JS 时核心内容仍可读</span></label>
+          </div>
+
+          <div class="pager">
+            <a href="css.html"><small>上一层</small>← 样式层</a>
+            <a href="deploy.html"><small>下一层</small>部署层：上线 →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div><h4>五层教程</h4><div class="footer-links">
+          <a href="plan.html">① 规划层</a><a href="html.html">② 结构层</a><a href="css.html">③ 样式层</a><a href="javascript.html">④ 交互层</a><a href="deploy.html">⑤ 部署层</a>
+        </div></div>
+        <div><h4>快速导航</h4><div class="footer-links">
+          <a href="../index.html#roadmap">学习路线</a><a href="../index.html#flow">制作流程</a><a href="../index.html#code">代码示例</a><a href="../index.html#faq">常见问题</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span><span>HTML · CSS · JavaScript · 五层递进</span></div>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

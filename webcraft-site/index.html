@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建站学院 · 从零做出一个网站</title>
+  <meta name="description" content="用五层结构理解网站制作：规划、HTML 结构、CSS 样式、JavaScript 交互、部署上线。">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+
+  <!-- ============ 顶部导航（一级） ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">⌘</span>
+        <span>建站学院<small>WEB CRAFT</small></span>
+      </a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="index.html" data-page="home">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="pages/plan.html">① 规划层</a>
+            <a href="pages/html.html">② 结构层 HTML</a>
+            <a href="pages/css.html">③ 样式层 CSS</a>
+            <a href="pages/javascript.html">④ 交互层 JS</a>
+            <a href="pages/deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="#roadmap">学习路线</a>
+        <a href="#flow">制作流程</a>
+        <a href="#code">代码示例</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+      <a class="header-cta" href="pages/plan.html">开始学习 →</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 首屏 ============ -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> 一份给初学者的建站地图</span>
+          <h1>把网站做出来，<br>其实只有<span class="grad">五层</span>。</h1>
+          <p class="lead">从想清楚要做给谁看，到写出第一行代码，再到让全世界都能打开它。这个站点把"做网站"拆成 5 个可掌握的子任务，一层一层带你走完。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="pages/plan.html">从第 1 层开始 →</a>
+            <a class="btn btn-ghost" href="#roadmap">先看五层路线图</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>5</strong>个递进层级</div>
+            <div><strong>30min</strong>通读全站</div>
+            <div><strong>0</strong>基础要求</div>
+          </div>
+        </div>
+
+        <!-- 分层堆叠示意图 -->
+        <div class="stack-wrap">
+          <img class="hero-mascot" src="assets/img/mascot.svg" alt="建站学院吉祥物：举着代码卡片的小机器人">
+          <div class="stack-note">点一下卡片试试 ↗</div>
+          <div class="stack">
+            <div class="layer l1">
+              <span class="ln">⑤</span>
+              <div><strong>部署上线</strong><span>域名 · 主机 · HTTPS · 监控</span></div>
+              <span class="tag">DEPLOY</span>
+            </div>
+            <div class="layer l2">
+              <span class="ln">④</span>
+              <div><strong>交互层 JavaScript</strong><span>事件 · DOM · 数据请求</span></div>
+              <span class="tag">.JS</span>
+            </div>
+            <div class="layer l3">
+              <span class="ln">③</span>
+              <div><strong>样式层 CSS</strong><span>布局 · 配色 · 响应式</span></div>
+              <span class="tag">.CSS</span>
+            </div>
+            <div class="layer l4">
+              <span class="ln">②</span>
+              <div><strong>结构层 HTML</strong><span>语义标签 · 内容组织</span></div>
+              <span class="tag">.HTML</span>
+            </div>
+            <div class="layer l5">
+              <span class="ln">①</span>
+              <div><strong>规划层</strong><span>目标 · 用户 · 信息架构</span></div>
+              <span class="tag">PLAN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 五层路线图 ============ -->
+    <section class="section alt" id="roadmap">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">The 5 Layers</span>
+          <h2>五层路线图：每一步都有迹可循</h2>
+          <p>不要跳层。上一层没想清楚，下一层就会反复返工。点击卡片进入对应层的详细教程。</p>
+        </div>
+        <div class="card-grid">
+          <a class="card reveal" href="pages/plan.html">
+            <img class="card-img" src="assets/img/layer-plan.svg" alt="规划层插画：清单、放大镜与网站地图">
+            <div class="card-icon bg-brand">①</div>
+            <h3>规划层 · 想清楚</h3>
+            <p>确定网站目标、目标用户与栏目结构，先画出骨架再谈代码。</p>
+            <span class="more">进入教程 <span>→</span></span>
+          </a>
+          <a class="card reveal" href="pages/html.html">
+            <img class="card-img" src="assets/img/layer-html.svg" alt="结构层插画：浏览器窗口与 HTML 标签">
+            <div class="card-icon bg-sky">②</div>
+            <h3>结构层 · 搭骨架</h3>
+            <p>用语义化 HTML 把内容放对位置，让浏览器和搜索引擎都读懂。</p>
+            <span class="more">进入教程 <span>→</span></span>
+          </a>
+          <a class="card reveal" href="pages/css.html">
+            <img class="card-img" src="assets/img/layer-css.svg" alt="样式层插画：调色盘、画笔与多端布局">
+            <div class="card-icon bg-teal">③</div>
+            <h3>样式层 · 穿衣服</h3>
+            <p>盒模型、Flex/Grid 布局与响应式设计，让页面好看又好用。</p>
+            <span class="more">进入教程 <span>→</span></span>
+          </a>
+          <a class="card reveal" href="pages/javascript.html">
+            <img class="card-img" src="assets/img/layer-js.svg" alt="交互层插画：闪电、计数器与点击涟漪">
+            <div class="card-icon bg-amber">④</div>
+            <h3>交互层 · 给灵魂</h3>
+            <p>用 JavaScript 响应用户操作、更新页面内容、与后端交换数据。</p>
+            <span class="more">进入教程 <span>→</span></span>
+          </a>
+          <a class="card reveal" href="pages/deploy.html">
+            <img class="card-img" src="assets/img/layer-deploy.svg" alt="部署层插画：云、地球与升空的火箭">
+            <div class="card-icon bg-rose">⑤</div>
+            <h3>部署层 · 让所有人看到</h3>
+            <p>域名解析、静态托管、HTTPS 与上线后的性能、安全清单。</p>
+            <span class="more">进入教程 <span>→</span></span>
+          </a>
+          <a class="card reveal" href="#code">
+            <img class="card-img" src="assets/img/mascot.svg" alt="本站吉祥物小机器人，手里举着代码卡片">
+            <div class="card-icon bg-brand">⌘</div>
+            <h3>综合实战 · 串起来</h3>
+            <p>看一份最小可运行示例，理解 HTML、CSS、JS 三者如何协同工作。</p>
+            <span class="more">查看示例 <span>→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 制作流程 ============ -->
+    <section class="section" id="flow">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Workflow</span>
+          <h2>一个网站从想法到上线的完整流程</h2>
+          <p>五层之外，还需要一个"反复验证"的循环：做一点、看一点、改一点。</p>
+        </div>
+        <div class="timeline">
+          <div class="step reveal"><h4>明确目标</h4><p>一句话说清网站要解决什么问题、给谁用。</p></div>
+          <div class="step reveal"><h4>绘制结构</h4><p>列出页面清单与栏目层级，画简单线框图。</p></div>
+          <div class="step reveal"><h4>编写内容</h4><p>先有文案再有设计，避免被排版牵着走。</p></div>
+          <div class="step reveal"><h4>实现页面</h4><p>HTML 搭结构 → CSS 做样式 → JS 加交互。</p></div>
+          <div class="step reveal"><h4>多端测试</h4><p>在手机、平板、桌面检查布局与功能。</p></div>
+          <div class="step reveal"><h4>发布与迭代</h4><p>部署上线，收集反馈，持续修正与优化。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 代码示例 ============ -->
+    <section class="section alt" id="code">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Live Example</span>
+          <h2>最少的代码，看见三层如何配合</h2>
+          <p>同一件事：HTML 负责"有什么"，CSS 负责"长什么样"，JS 负责"点了会怎样"。</p>
+        </div>
+        <div class="code-panel reveal">
+          <div class="code-tabs">
+            <button class="code-tab active" data-target="code-html">index.html</button>
+            <button class="code-tab" data-target="code-css">style.css</button>
+            <button class="code-tab" data-target="code-js">app.js</button>
+          </div>
+<pre class="code-body active" id="code-html"><code><span class="c-com">&lt;!-- ① 结构：内容与语义 --&gt;</span>
+<span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"zh-CN"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+  <span class="c-tag">&lt;meta</span> <span class="c-attr">charset</span>=<span class="c-str">"UTF-8"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;meta</span> <span class="c-attr">name</span>=<span class="c-str">"viewport"</span> <span class="c-attr">content</span>=<span class="c-str">"width=device-width"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;title&gt;</span>我的第一个网站<span class="c-tag">&lt;/title&gt;</span>
+  <span class="c-tag">&lt;link</span> <span class="c-attr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-attr">href</span>=<span class="c-str">"style.css"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+  <span class="c-tag">&lt;main&gt;</span>
+    <span class="c-tag">&lt;h1&gt;</span>你好，网页世界<span class="c-tag">&lt;/h1&gt;</span>
+    <span class="c-tag">&lt;button</span> <span class="c-attr">id</span>=<span class="c-str">"hi"</span><span class="c-tag">&gt;</span>点我<span class="c-tag">&lt;/button&gt;</span>
+  <span class="c-tag">&lt;/main&gt;</span>
+  <span class="c-tag">&lt;script</span> <span class="c-attr">src</span>=<span class="c-str">"app.js"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+<pre class="code-body" id="code-css"><code><span class="c-com">/* ② 样式：变量、布局、响应式 */</span>
+<span class="c-sel">:root</span> { <span class="c-prop">--brand</span>: <span class="c-num">#4f46e5</span>; }
+<span class="c-sel">*</span> { <span class="c-prop">box-sizing</span>: border-box; }
+<span class="c-sel">body</span> {
+  <span class="c-prop">font-family</span>: system-ui, sans-serif;
+  <span class="c-prop">margin</span>: <span class="c-num">0</span>;
+}
+<span class="c-sel">main</span> {
+  <span class="c-prop">max-width</span>: <span class="c-num">720px</span>;
+  <span class="c-prop">margin</span>: <span class="c-num">40px</span> auto;
+}
+<span class="c-sel">button</span> {
+  <span class="c-prop">background</span>: <span class="c-fn">var</span>(--brand);
+  <span class="c-prop">color</span>: white; <span class="c-prop">border</span>: <span class="c-num">0</span>;
+  <span class="c-prop">padding</span>: <span class="c-num">10px 18px</span>; <span class="c-prop">border-radius</span>: <span class="c-num">8px</span>;
+}
+<span class="c-kw">@media</span> (<span class="c-prop">max-width</span>: <span class="c-num">600px</span>) {
+  <span class="c-sel">main</span> { <span class="c-prop">margin</span>: <span class="c-num">20px</span>; }
+}</code></pre>
+<pre class="code-body" id="code-js"><code><span class="c-com">// ③ 交互：找到元素，监听事件</span>
+<span class="c-kw">const</span> btn = document.<span class="c-fn">querySelector</span>(<span class="c-str">"#hi"</span>);
+
+btn.<span class="c-fn">addEventListener</span>(<span class="c-str">"click"</span>, () =&gt; {
+  <span class="c-fn">alert</span>(<span class="c-str">"你好！这是 JavaScript 的回应。"</span>);
+});
+
+<span class="c-com">// 三个文件放在同一目录，双击 index.html 就能运行</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">FAQ</span>
+          <h2>开始之前，你可能想知道</h2>
+        </div>
+        <div class="faq reveal">
+          <details open>
+            <summary>完全零基础，可以先学哪一层？</summary>
+            <p>从「规划层」开始。它不需要任何代码知识，却能帮你建立对网站的整体认识。之后再按 HTML → CSS → JavaScript 的顺序推进，最后学习部署。</p>
+          </details>
+          <details>
+            <summary>必须买服务器和域名才能做网站吗？</summary>
+            <p>不必。学习阶段可以直接在本地创建 HTML 文件双击打开；想发布时，有很多免费静态托管平台可用。域名和服务器是进阶选项，详见「部署层」。</p>
+          </details>
+          <details>
+            <summary>HTML、CSS、JavaScript 分别是什么？</summary>
+            <p>HTML 定义内容结构，CSS 控制视觉表现，JavaScript 实现交互逻辑。可以把它们理解成建筑的骨架、装修与智能家居系统。</p>
+          </details>
+          <details>
+            <summary>需要买软件吗？</summary>
+            <p>不需要。系统自带的记事本就能写代码，推荐安装免费的 VS Code 编辑器，它有语法高亮和自动补全，效率更高。</p>
+          </details>
+          <details>
+            <summary>这个站点本身是怎么做出来的？</summary>
+            <p>它就使用了你正在学的这套技术：HTML 负责页面结构、一份共享 CSS 统一视觉、一段 JavaScript 处理菜单、标签切换和滚动效果，五个页面通过链接互联。</p>
+          </details>
+          <details>
+            <summary>页面里的插画是哪里来的？</summary>
+            <p>全部是本站点手写的原创 SVG 插画，包括吉祥物、五层主题图和站点图标；代码也是原创编写，没有使用网上下载的现成页面或素材，你可以在浏览器的开发者工具里查看它们的源码。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div>
+          <h4>五层教程</h4>
+          <div class="footer-links">
+            <a href="pages/plan.html">① 规划层</a>
+            <a href="pages/html.html">② 结构层</a>
+            <a href="pages/css.html">③ 样式层</a>
+            <a href="pages/javascript.html">④ 交互层</a>
+            <a href="pages/deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <div>
+          <h4>快速导航</h4>
+          <div class="footer-links">
+            <a href="#roadmap">学习路线</a>
+            <a href="#flow">制作流程</a>
+            <a href="#code">代码示例</a>
+            <a href="#faq">常见问题</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span>
+        <span>HTML · CSS · JavaScript · 五层递进</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

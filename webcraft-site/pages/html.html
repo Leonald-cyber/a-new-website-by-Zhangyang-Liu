@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 2 层 · 结构层 HTML | 建站学院</title>
+  <meta name="description" content="网站制作的第二层：用语义化 HTML 组织内容，建立可访问、可维护的页面结构。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="html">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="plan.html">① 规划层</a>
+            <a href="html.html">② 结构层 HTML</a>
+            <a href="css.html">③ 样式层 CSS</a>
+            <a href="javascript.html">④ 交互层 JS</a>
+            <a href="deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="plan.html">规划</a>
+        <a href="html.html" data-page="html">结构</a>
+        <a href="css.html">样式</a>
+        <a href="javascript.html">交互</a>
+        <a href="deploy.html">部署</a>
+      </nav>
+      <a class="header-cta" href="css.html">下一层 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="crumb"><a href="../index.html">首页</a><span>/</span>五层详解<span>/</span>第 2 层</div>
+          <h1>② 结构层：用 HTML 搭骨架</h1>
+          <p>HTML 不是"写网页外观"，而是"告诉浏览器这份文档里有什么"。结构对了，样式和交互才有可靠的落脚点。</p>
+          <div class="badge-row"><span class="badge">难度 ★★☆☆☆</span><span class="badge">预计 45 分钟</span><span class="badge orig">原创插画</span></div>
+        </div>
+        <img class="page-illustration" src="../assets/img/layer-html.svg" alt="结构层插画：浏览器窗口里的代码与漂浮的 HTML 标签">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <aside class="toc">
+          <div class="toc-title">本页目录</div>
+          <a href="#skeleton">文档骨架</a>
+          <a href="#semantic">语义化标签</a>
+          <a href="#media">图片与链接</a>
+          <a href="#forms">表单</a>
+          <a href="#a11y">可访问性</a>
+          <a href="#checklist">结构清单</a>
+        </aside>
+
+        <article class="article">
+          <h2 id="skeleton">1. 每份 HTML 的骨架</h2>
+          <p>下面这 10 行是几乎所有页面的起点。新建 <code>index.html</code>，把这段粘进去：</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"zh-CN"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+  <span class="c-tag">&lt;meta</span> <span class="c-attr">charset</span>=<span class="c-str">"UTF-8"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;meta</span> <span class="c-attr">name</span>=<span class="c-str">"viewport"</span> <span class="c-attr">content</span>=<span class="c-str">"width=device-width, initial-scale=1"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;title&gt;</span>页面标题<span class="c-tag">&lt;/title&gt;</span>
+  <span class="c-tag">&lt;link</span> <span class="c-attr">rel</span>=<span class="c-str">"stylesheet"</span> <span class="c-attr">href</span>=<span class="c-str">"style.css"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+  <span class="c-com">&lt;!-- 页面可见内容写在这里 --&gt;</span>
+  <span class="c-tag">&lt;script</span> <span class="c-attr">src</span>=<span class="c-str">"app.js"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span></code></pre>
+          </div>
+          <ul class="points">
+            <li><code>lang="zh-CN"</code> 声明页面语言，帮助搜索引擎与读屏软件；</li>
+            <li><code>charset="UTF-8"</code> 保证中文不乱码；</li>
+            <li><code>viewport</code> 让页面在手机上按真实宽度渲染——漏掉它，移动端布局会失效；</li>
+            <li>样式表放 <code>&lt;head&gt;</code>，脚本放 <code>&lt;body&gt;</code> 末尾，避免阻塞渲染。</li>
+          </ul>
+
+          <h2 id="semantic">2. 语义化：让标签表达含义</h2>
+          <p>同样是一个标题，<code>&lt;h1&gt;</code> 告诉浏览器"这是主标题"，而 <code>&lt;div class="big"&gt;</code> 什么也没说。语义化结构对 SEO、可读性和辅助技术都更友好。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>标签</th><th>用途</th></tr></thead>
+              <tbody>
+                <tr><td><code>&lt;header&gt;</code></td><td>页头或区块头部，常放 Logo、导航</td></tr>
+                <tr><td><code>&lt;nav&gt;</code></td><td>主导航链接集合</td></tr>
+                <tr><td><code>&lt;main&gt;</code></td><td>页面主体，一页只出现一次</td></tr>
+                <tr><td><code>&lt;article&gt;</code> / <code>&lt;section&gt;</code></td><td>独立内容 / 主题分组</td></tr>
+                <tr><td><code>&lt;aside&gt;</code></td><td>侧边栏等辅助内容</td></tr>
+                <tr><td><code>&lt;footer&gt;</code></td><td>页脚信息</td></tr>
+                <tr><td><code>&lt;h1&gt;~&lt;h6&gt;</code></td><td>标题层级，一页通常只有一个 h1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note"><strong>判断方法：</strong>去掉所有 CSS 后，页面还能不能清晰读出内容层次？能，说明结构合格。</div>
+
+          <h2 id="media">3. 图片与链接</h2>
+          <p>图片必须写 <code>alt</code>：既是无障碍要求，也是图片加载失败时的兜底文案。装饰性图片用 <code>alt=""</code> 明确告诉读屏软件跳过。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-com">&lt;!-- 内容图片：描述内容 --&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-str">"team.jpg"</span> <span class="c-attr">alt</span>=<span class="c-str">"团队在会议室讨论方案"</span> <span class="c-attr">width</span>=<span class="c-str">"800"</span> <span class="c-attr">height</span>=<span class="c-str">"500"</span><span class="c-tag">&gt;</span>
+
+<span class="c-com">&lt;!-- 站内链接 / 站外链接 --&gt;</span>
+<span class="c-tag">&lt;a</span> <span class="c-attr">href</span>=<span class="c-str">"about.html"</span><span class="c-tag">&gt;</span>关于我<span class="c-tag">&lt;/a&gt;</span>
+<span class="c-tag">&lt;a</span> <span class="c-attr">href</span>=<span class="c-str">"https://example.com"</span> <span class="c-attr">target</span>=<span class="c-str">"_blank"</span> <span class="c-attr">rel</span>=<span class="c-str">"noopener"</span><span class="c-tag">&gt;</span>外部站点<span class="c-tag">&lt;/a&gt;</span></code></pre>
+          </div>
+          <p>给图片写上 <code>width</code> 和 <code>height</code>，浏览器可以提前预留空间，避免加载时页面跳动。</p>
+
+          <h2 id="forms">4. 表单的基本功</h2>
+          <p>表单是网站收集信息的主要方式。每个输入框都要有 <code>&lt;label&gt;</code> 关联，点击标签文字就能聚焦输入框：</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-tag">&lt;form</span> <span class="c-attr">action</span>=<span class="c-str">"/submit"</span> <span class="c-attr">method</span>=<span class="c-str">"post"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;label</span> <span class="c-attr">for</span>=<span class="c-str">"email"</span><span class="c-tag">&gt;</span>邮箱<span class="c-tag">&lt;/label&gt;</span>
+  <span class="c-tag">&lt;input</span> <span class="c-attr">id</span>=<span class="c-str">"email"</span> <span class="c-attr">name</span>=<span class="c-str">"email"</span> <span class="c-attr">type</span>=<span class="c-str">"email"</span> <span class="c-attr">required</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;button</span> <span class="c-attr">type</span>=<span class="c-str">"submit"</span><span class="c-tag">&gt;</span>订阅<span class="c-tag">&lt;/button&gt;</span>
+<span class="c-tag">&lt;/form&gt;</span></code></pre>
+          </div>
+          <p><code>type="email"</code> 会自动调起合适的手机键盘并做基础校验；<code>required</code> 阻止空值提交。</p>
+
+          <h2 id="a11y">5. 可访问性：三个立即能做的改进</h2>
+          <ul class="points">
+            <li>用键盘 Tab 走一遍全站，确认所有可点击元素都能被聚焦；</li>
+            <li>图片补 <code>alt</code>，按钮写清楚文字，避免"点击这里"；</li>
+            <li>标题按 h1 → h2 → h3 顺序使用，不要为了字号跳级。</li>
+          </ul>
+          <div class="note warn"><strong>常见误区：</strong>用 <code>&lt;div onclick="..."&gt;</code> 做按钮。它没有键盘可用性，应使用原生 <code>&lt;button&gt;</code>。</div>
+
+          <h2 id="checklist">6. 结构完成清单</h2>
+          <div class="checklist">
+            <label><input type="checkbox" id="h1"><span>文档声明、语言、UTF-8、viewport 齐全</span></label>
+            <label><input type="checkbox" id="h2"><span>每页只有一个 h1，标题层级连续</span></label>
+            <label><input type="checkbox" id="h3"><span>页头/导航/主体/页脚使用语义标签</span></label>
+            <label><input type="checkbox" id="h4"><span>所有图片都有合适的 alt</span></label>
+            <label><input type="checkbox" id="h5"><span>表单输入框均有关联 label</span></label>
+            <label><input type="checkbox" id="h6"><span>用键盘 Tab 测试通过</span></label>
+          </div>
+
+          <div class="pager">
+            <a href="plan.html"><small>上一层</small>← 规划层</a>
+            <a href="css.html"><small>下一层</small>样式层：穿衣服 →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div><h4>五层教程</h4><div class="footer-links">
+          <a href="plan.html">① 规划层</a><a href="html.html">② 结构层</a><a href="css.html">③ 样式层</a><a href="javascript.html">④ 交互层</a><a href="deploy.html">⑤ 部署层</a>
+        </div></div>
+        <div><h4>快速导航</h4><div class="footer-links">
+          <a href="../index.html#roadmap">学习路线</a><a href="../index.html#flow">制作流程</a><a href="../index.html#code">代码示例</a><a href="../index.html#faq">常见问题</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span><span>HTML · CSS · JavaScript · 五层递进</span></div>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

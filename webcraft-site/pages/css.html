@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 3 层 · 样式层 CSS | 建站学院</title>
+  <meta name="description" content="网站制作的第三层：盒模型、选择器、Flex/Grid 布局、响应式与设计变量。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="css">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="plan.html">① 规划层</a>
+            <a href="html.html">② 结构层 HTML</a>
+            <a href="css.html">③ 样式层 CSS</a>
+            <a href="javascript.html">④ 交互层 JS</a>
+            <a href="deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="plan.html">规划</a>
+        <a href="html.html">结构</a>
+        <a href="css.html" data-page="css">样式</a>
+        <a href="javascript.html">交互</a>
+        <a href="deploy.html">部署</a>
+      </nav>
+      <a class="header-cta" href="javascript.html">下一层 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="crumb"><a href="../index.html">首页</a><span>/</span>五层详解<span>/</span>第 3 层</div>
+          <h1>③ 样式层：给页面穿上衣服</h1>
+          <p>CSS 决定元素在哪里、多大、什么颜色。掌握盒模型与两套布局系统，绝大多数页面你都能自己写出来。</p>
+          <div class="badge-row"><span class="badge">难度 ★★★☆☆</span><span class="badge">预计 60 分钟</span><span class="badge orig">原创插画</span></div>
+        </div>
+        <img class="page-illustration" src="../assets/img/layer-css.svg" alt="样式层插画：调色盘、画笔、布局卡片与手机电脑预览">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <aside class="toc">
+          <div class="toc-title">本页目录</div>
+          <a href="#box">盒模型</a>
+          <a href="#selectors">选择器与层叠</a>
+          <a href="#layout">Flex 与 Grid</a>
+          <a href="#responsive">响应式</a>
+          <a href="#tokens">设计变量</a>
+          <a href="#checklist">样式清单</a>
+        </aside>
+
+        <article class="article">
+          <h2 id="box">1. 先理解盒模型</h2>
+          <p>页面里每个元素都是一个盒子，从内到外依次是：<strong>内容 content → 内边距 padding → 边框 border → 外边距 margin</strong>。CSS 布局的绝大多数"奇怪现象"，都来自没有正确理解这四层。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-sel">.card</span> {
+  <span class="c-prop">width</span>: <span class="c-num">300px</span>;        <span class="c-com">/* 内容宽度 */</span>
+  <span class="c-prop">padding</span>: <span class="c-num">20px</span>;      <span class="c-com">/* 内容与边框之间 */</span>
+  <span class="c-prop">border</span>: <span class="c-num">1px</span> solid <span class="c-num">#e2e8f0</span>;
+  <span class="c-prop">margin</span>: <span class="c-num">16px</span>;      <span class="c-com">/* 盒子与其他盒子之间 */</span>
+}
+
+<span class="c-com">/* 全局设置：让 width 包含 padding 和 border，布局更可预测 */</span>
+<span class="c-sel">*</span> { <span class="c-prop">box-sizing</span>: border-box; }</code></pre>
+          </div>
+          <div class="note"><strong>必记：</strong>在项目第一行写上 <code>* { box-sizing: border-box; }</code>。这样声明宽度时得到的就是元素的实际宽度，不用手动做加法。</div>
+
+          <h2 id="selectors">2. 选择器与层叠</h2>
+          <p>CSS 通过选择器找到元素。常用的四类：</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>类型</th><th>写法</th><th>选择范围</th></tr></thead>
+              <tbody>
+                <tr><td>元素</td><td><code>p</code></td><td>所有段落</td></tr>
+                <tr><td>类</td><td><code>.card</code></td><td>所有 class 含 card 的元素</td></tr>
+                <tr><td>ID</td><td><code>#app</code></td><td>id 为 app 的唯一元素</td></tr>
+                <tr><td>后代组合</td><td><code>.card h3</code></td><td>card 内部的 h3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>多条规则命中同一元素时，按<strong>来源顺序 + 优先级</strong>决定胜负：后面的覆盖前面的，ID 优先于类，类优先于元素。实际开发中尽量用类选择器，少用 ID 和 <code>!important</code>。</p>
+
+          <h2 id="layout">3. 两套布局系统：Flex 与 Grid</h2>
+          <h3>Flexbox：一维排列</h3>
+          <p>适合导航条、按钮组、卡片内部——元素沿一条轴线排布。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-sel">.nav</span> {
+  <span class="c-prop">display</span>: flex;
+  <span class="c-prop">justify-content</span>: space-between; <span class="c-com">/* 主轴对齐 */</span>
+  <span class="c-prop">align-items</span>: center;             <span class="c-com">/* 交叉轴对齐 */</span>
+  <span class="c-prop">gap</span>: <span class="c-num">16px</span>;                      <span class="c-com">/* 元素间距 */</span>
+}</code></pre>
+          </div>
+          <h3>Grid：二维网格</h3>
+          <p>适合页面整体框架、卡片矩阵——同时控制行和列。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-sel">.gallery</span> {
+  <span class="c-prop">display</span>: grid;
+  <span class="c-prop">grid-template-columns</span>: <span class="c-fn">repeat</span>(<span class="c-num">3</span>, <span class="c-num">1fr</span>); <span class="c-com">/* 三等分列 */</span>
+  <span class="c-prop">gap</span>: <span class="c-num">20px</span>;
+}
+
+<span class="c-com">/* 自适应列：空间够就排多列，不够自动换行 */</span>
+<span class="c-sel">.cards</span> {
+  <span class="c-prop">display</span>: grid;
+  <span class="c-prop">grid-template-columns</span>: <span class="c-fn">repeat</span>(auto-fit, <span class="c-fn">minmax</span>(<span class="c-num">260px</span>, <span class="c-num">1fr</span>));
+}</code></pre>
+          </div>
+          <p>经验法则：<strong>排一行或一列用 Flex，排网格用 Grid</strong>。两者可以嵌套使用。</p>
+
+          <h2 id="responsive">4. 响应式：一套代码适配所有屏幕</h2>
+          <p>响应式三件套：弹性布局、相对单位、媒体查询。核心思路是先写手机端样式，再在屏幕变宽时增强布局。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-com">/* 默认：手机，单列 */</span>
+<span class="c-sel">.cards</span> { <span class="c-prop">display</span>: grid; <span class="c-prop">gap</span>: <span class="c-num">16px</span>; }
+
+<span class="c-com">/* 平板及以上：两列 */</span>
+<span class="c-kw">@media</span> (<span class="c-prop">min-width</span>: <span class="c-num">720px</span>) {
+  <span class="c-sel">.cards</span> { <span class="c-prop">grid-template-columns</span>: <span class="c-fn">repeat</span>(<span class="c-num">2</span>, <span class="c-num">1fr</span>); }
+}
+<span class="c-com">/* 桌面：三列 */</span>
+<span class="c-kw">@media</span> (<span class="c-prop">min-width</span>: <span class="c-num">1024px</span>) {
+  <span class="c-sel">.cards</span> { <span class="c-prop">grid-template-columns</span>: <span class="c-fn">repeat</span>(<span class="c-num">3</span>, <span class="c-num">1fr</span>); }
+}</code></pre>
+          </div>
+          <ul class="points">
+            <li>别忘了 HTML 里的 <code>viewport</code> meta 标签，否则媒体查询在手机上不生效；</li>
+            <li>图片设置 <code>max-width: 100%</code>，避免溢出容器；</li>
+            <li>字号用 <code>rem</code>、容器宽度用 <code>%</code> 或 <code>fr</code>，比写死像素更灵活。</li>
+          </ul>
+
+          <h2 id="tokens">5. 用变量管理设计系统</h2>
+          <p>把颜色、圆角、间距等重复值抽成 CSS 变量，改一处即可全站生效——这也是本站点正在用的方式。</p>
+          <div class="code-panel">
+<pre class="code-body active"><code><span class="c-sel">:root</span> {
+  <span class="c-prop">--brand</span>: <span class="c-num">#4f46e5</span>;
+  <span class="c-prop">--ink</span>: <span class="c-num">#0f172a</span>;
+  <span class="c-prop">--radius</span>: <span class="c-num">16px</span>;
+}
+<span class="c-sel">.btn</span> {
+  <span class="c-prop">background</span>: <span class="c-fn">var</span>(--brand);
+  <span class="c-prop">border-radius</span>: <span class="c-fn">var</span>(--radius);
+}</code></pre>
+          </div>
+          <div class="note warn"><strong>调试技巧：</strong>浏览器按 F12 打开开发者工具，选中元素即可实时修改 CSS 并查看盒模型。先在这里试，再写回文件。</div>
+
+          <h2 id="checklist">6. 样式完成清单</h2>
+          <div class="checklist">
+            <label><input type="checkbox" id="c1"><span>设置 box-sizing: border-box</span></label>
+            <label><input type="checkbox" id="c2"><span>使用变量统一管理主色与圆角</span></label>
+            <label><input type="checkbox" id="c3"><span>一维排列用 Flex，网格用 Grid</span></label>
+            <label><input type="checkbox" id="c4"><span>手机端优先，逐级写媒体查询</span></label>
+            <label><input type="checkbox" id="c5"><span>图片 max-width: 100% 不溢出</span></label>
+            <label><input type="checkbox" id="c6"><span>在手机和桌面各检查一遍</span></label>
+          </div>
+
+          <div class="pager">
+            <a href="html.html"><small>上一层</small>← 结构层</a>
+            <a href="javascript.html"><small>下一层</small>交互层：给灵魂 →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div><h4>五层教程</h4><div class="footer-links">
+          <a href="plan.html">① 规划层</a><a href="html.html">② 结构层</a><a href="css.html">③ 样式层</a><a href="javascript.html">④ 交互层</a><a href="deploy.html">⑤ 部署层</a>
+        </div></div>
+        <div><h4>快速导航</h4><div class="footer-links">
+          <a href="../index.html#roadmap">学习路线</a><a href="../index.html#flow">制作流程</a><a href="../index.html#code">代码示例</a><a href="../index.html#faq">常见问题</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span><span>HTML · CSS · JavaScript · 五层递进</span></div>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

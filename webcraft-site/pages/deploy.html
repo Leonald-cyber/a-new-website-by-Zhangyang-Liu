@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 5 层 · 部署层 | 建站学院</title>
+  <meta name="description" content="网站制作的第五层：本地检查、静态托管、域名解析、HTTPS 与上线后的迭代。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="deploy">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="plan.html">① 规划层</a>
+            <a href="html.html">② 结构层 HTML</a>
+            <a href="css.html">③ 样式层 CSS</a>
+            <a href="javascript.html">④ 交互层 JS</a>
+            <a href="deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="plan.html">规划</a>
+        <a href="html.html">结构</a>
+        <a href="css.html">样式</a>
+        <a href="javascript.html">交互</a>
+        <a href="deploy.html" data-page="deploy">部署</a>
+      </nav>
+      <a class="header-cta" href="../index.html">回到首页 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="crumb"><a href="../index.html">首页</a><span>/</span>五层详解<span>/</span>第 5 层</div>
+          <h1>⑤ 部署层：让所有人都能打开</h1>
+          <p>写完代码只是本地文件，部署才是把它变成"一个网站"。这一层解决三件事：放哪里、叫什么、怎么让人放心访问。</p>
+          <div class="badge-row"><span class="badge">难度 ★★☆☆☆</span><span class="badge">预计 30 分钟</span><span class="badge orig">原创插画</span></div>
+        </div>
+        <img class="page-illustration" src="../assets/img/layer-deploy.svg" alt="部署层插画：云端、地球、升空火箭与成功勾选">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <aside class="toc">
+          <div class="toc-title">本页目录</div>
+          <a href="#prepare">上线前检查</a>
+          <a href="#hosting">选择托管平台</a>
+          <a href="#domain">绑定域名</a>
+          <a href="#https">HTTPS 与性能</a>
+          <a href="#iterate">上线之后</a>
+          <a href="#checklist">上线清单</a>
+        </aside>
+
+        <article class="article">
+          <h2 id="prepare">1. 上线前检查清单</h2>
+          <p>部署之前，先在本地做最后一轮确认。这一步最常见的问题是<strong>大小写和相对路径</strong>——本地 Windows 不区分大小写，但多数服务器区分。</p>
+          <ul class="points">
+            <li>所有链接能不能点通？包括导航、页脚、返回顶部；</li>
+            <li>图片、CSS、JS 是否都使用相对路径且文件名大小写一致；</li>
+            <li>把站点文件夹整个拷到另一台设备，双击 <code>index.html</code> 是否仍正常；</li>
+            <li>用手机打开本地文件（或局域网地址），检查响应式效果。</li>
+          </ul>
+          <div class="note warn"><strong>路径经验：</strong>首页在根目录用 <code>assets/css/style.css</code>，子目录页面用 <code>../assets/css/style.css</code>。本站点就是这么组织的。</div>
+
+          <h2 id="hosting">2. 选择托管平台</h2>
+          <p>对于纯静态站点（就是本教程做出的这类），不需要配置服务器环境，把文件夹上传即可。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>方式</th><th>适合场景</th><th>说明</th></tr></thead>
+              <tbody>
+                <tr><td>静态托管平台</td><td>个人站点、作品集、文档</td><td>连接代码仓库后自动部署，通常有免费额度</td></tr>
+                <tr><td>对象存储 + 静态网站</td><td>企业官网、活动页</td><td>上传文件即可，配合 CDN 访问更快</td></tr>
+                <tr><td>虚拟主机 / 云服务器</td><td>需要后端、数据库</td><td>自由度最高，也需要自己维护环境</td></tr>
+                <tr><td>局域网内部访问</td><td>演示、内部工具</td><td>不对外发布，同一网络下通过 IP 访问</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>部署的本质：把包含 <code>index.html</code> 的整个目录上传，平台会把它映射到一个公开 URL。<strong>入口文件一定要叫 index.html</strong>。</p>
+
+          <h2 id="domain">3. 绑定域名</h2>
+          <p>域名相当于网站的门牌号。购买域名后，需要设置 DNS 解析把它指向托管平台：</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>记录类型</th><th>主机记录</th><th>记录值</th><th>用途</th></tr></thead>
+              <tbody>
+                <tr><td>A</td><td>@</td><td>平台提供的 IP</td><td>让 example.com 指向站点</td></tr>
+                <tr><td>CNAME</td><td>www</td><td>平台提供的域名</td><td>让 www.example.com 指向同一站点</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>DNS 生效通常需要几分钟到几小时。修改后没生效，先等等再刷新，不要反复改动。</p>
+
+          <h2 id="https">4. HTTPS 与性能</h2>
+          <p>HTTPS 让浏览器与网站之间的传输加密，地址栏出现小锁标志。现代托管平台基本都提供免费证书，开启后记得<strong>强制 HTTP 跳转到 HTTPS</strong>。</p>
+          <ul class="points">
+            <li>压缩图片：先缩尺寸再上传，质量够用即可；</li>
+            <li>CSS/JS 文件合并压缩，减少请求数量；</li>
+            <li>给脚本加 <code>defer</code>，不阻塞页面渲染；</li>
+            <li>用浏览器无痕模式测试一遍，排除缓存干扰。</li>
+          </ul>
+          <div class="note"><strong>不要过早优化：</strong>一个内容清晰的网站，比一个加载快 0.1 秒但没有价值的网站更有用。先把内容做好。</div>
+
+          <h2 id="iterate">5. 上线不是终点</h2>
+          <p>网站发布后，保持一个简单循环：<strong>观察 → 收集 → 修改 → 再发布</strong>。</p>
+          <ul class="points">
+            <li>问身边三个人：他们能在 10 秒内找到想看的内容吗？</li>
+            <li>定期点击全站链接，避免内容更新后出现死链；</li>
+            <li>把每次修改都留一个备份或版本记录，出错时能回退；</li>
+            <li>每三个月回看一次目标：网站还在服务于最初那个目的吗？</li>
+          </ul>
+
+          <h2 id="checklist">6. 上线清单</h2>
+          <div class="checklist">
+            <label><input type="checkbox" id="d1"><span>全站链接与图片检查通过</span></label>
+            <label><input type="checkbox" id="d2"><span>文件名大小写与路径一致</span></label>
+            <label><input type="checkbox" id="d3"><span>手机端与桌面端均已验证</span></label>
+            <label><input type="checkbox" id="d4"><span>入口文件为 index.html</span></label>
+            <label><input type="checkbox" id="d5"><span>已开启 HTTPS 并强制跳转</span></label>
+            <label><input type="checkbox" id="d6"><span>域名解析生效、可正常访问</span></label>
+          </div>
+
+          <div class="pager">
+            <a href="javascript.html"><small>上一层</small>← 交互层</a>
+            <a href="../index.html"><small>回到起点</small>五层路线图 →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div><h4>五层教程</h4><div class="footer-links">
+          <a href="plan.html">① 规划层</a><a href="html.html">② 结构层</a><a href="css.html">③ 样式层</a><a href="javascript.html">④ 交互层</a><a href="deploy.html">⑤ 部署层</a>
+        </div></div>
+        <div><h4>快速导航</h4><div class="footer-links">
+          <a href="../index.html#roadmap">学习路线</a><a href="../index.html#flow">制作流程</a><a href="../index.html#code">代码示例</a><a href="../index.html#faq">常见问题</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span><span>HTML · CSS · JavaScript · 五层递进</span></div>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

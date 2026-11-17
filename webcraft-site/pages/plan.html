@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 1 层 · 规划层 | 建站学院</title>
+  <meta name="description" content="网站制作的第一层：明确目标、认识用户、设计信息架构与线框图。">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="plan">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></a>
+      <button class="menu-btn" aria-label="打开菜单">☰</button>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <div class="dropdown">
+          <button class="nav-trigger">五层详解</button>
+          <div class="dropdown-menu">
+            <span class="dm-label">按学习顺序</span>
+            <a href="plan.html">① 规划层</a>
+            <a href="html.html">② 结构层 HTML</a>
+            <a href="css.html">③ 样式层 CSS</a>
+            <a href="javascript.html">④ 交互层 JS</a>
+            <a href="deploy.html">⑤ 部署层</a>
+          </div>
+        </div>
+        <a href="plan.html" data-page="plan">规划</a>
+        <a href="html.html">结构</a>
+        <a href="css.html">样式</a>
+        <a href="javascript.html">交互</a>
+        <a href="deploy.html">部署</a>
+      </nav>
+      <a class="header-cta" href="html.html">下一层 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <div class="crumb"><a href="../index.html">首页</a><span>/</span>五层详解<span>/</span>第 1 层</div>
+          <h1>① 规划层：先想清楚，再动手</h1>
+          <p>这一层不写一行代码，却决定了后面四层的方向。花 30 分钟想明白"给谁做、做什么、怎么组织"，能省掉后面 3 天的返工。</p>
+          <div class="badge-row"><span class="badge">难度 ★☆☆☆☆</span><span class="badge">预计 30 分钟</span><span class="badge orig">原创插画</span></div>
+        </div>
+        <img class="page-illustration" src="../assets/img/layer-plan.svg" alt="规划层插画：勾选清单、放大镜与三级网站地图">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <aside class="toc">
+          <div class="toc-title">本页目录</div>
+          <a href="#goal">一句话目标</a>
+          <a href="#audience">认识用户</a>
+          <a href="#architecture">信息架构</a>
+          <a href="#wireframe">线框图</a>
+          <a href="#stack">技术选型</a>
+          <a href="#checklist">规划清单</a>
+        </aside>
+
+        <article class="article">
+          <h2 id="goal">1. 用一句话定义网站</h2>
+          <p>不要一上来就说"我要做一个个人网站"。把它写成可以被验证的一句话，包含<strong>对象、价值、动作</strong>三个要素：</p>
+          <div class="note"><strong>公式：</strong>这是一个给【谁】看的【什么内容】网站，我希望他们看完后【做什么】。<br>例：给应届毕业生看的作品集网站，希望招聘方看完后能联系我。</div>
+          <p>一句话写不出来，说明还没想清楚——这正是规划层要解决的问题。</p>
+
+          <h2 id="audience">2. 认识你的用户</h2>
+          <p>不必做复杂的用户调研，回答下面四个问题就够起步：</p>
+          <ul class="points">
+            <li>他们是谁？（身份、设备、上网场景）</li>
+            <li>他们来网站想找什么？（最常见的一个任务）</li>
+            <li>他们可能从哪里进来？（搜索、朋友分享、直接访问）</li>
+            <li>看完之后你希望他们做什么？（联系、购买、订阅、阅读下一篇）</li>
+          </ul>
+          <p>把答案写成三张"用户卡片"，后面所有设计决策都可以回头对照：这个按钮对其中某个人有帮助吗？</p>
+
+          <h2 id="architecture">3. 设计信息架构</h2>
+          <p>信息架构就是把内容分门别类，形成一棵"网站地图"。新手常犯的错是把栏目分得太细——第一版控制在 <strong>5～7 个一级页面</strong>为宜。</p>
+          <div class="tree">
+            <div class="tree-row"><span class="tree-node root">首页 /</span></div>
+            <div class="tree-row"><span class="tree-indent"></span><span class="tree-node child">关于我</span><span class="tree-node child">作品集</span><span class="tree-node child">文章</span><span class="tree-node child">联系方式</span></div>
+            <div class="tree-row"><span class="tree-indent"></span><span class="tree-indent"></span><span class="tree-node">作品 A / 作品 B / 作品 C</span></div>
+            <div class="tree-row"><span class="tree-indent"></span><span class="tree-indent"></span><span class="tree-node">文章分类 1 / 文章分类 2</span></div>
+          </div>
+          <p>原则：任何一个内容点都能在 <strong>三次点击内</strong>找到。层级越浅，用户越不容易迷路。</p>
+
+          <h2 id="wireframe">4. 画线框图，不要画效果图</h2>
+          <p>线框图只表达"区块在哪里"，用方框和文字标注即可，不涉及颜色与字体。推荐的顺序是：</p>
+          <ul class="points">
+            <li>先画手机版本——屏幕最小，最能暴露内容优先级问题；</li>
+            <li>标出页头、主导航、主内容区、侧栏、页脚；</li>
+            <li>给每个区块标注"这里放什么内容"，而不是"这里放一张好看的图"；</li>
+            <li>再扩展到平板和桌面版本，考虑多栏布局。</li>
+          </ul>
+          <div class="note warn"><strong>提醒：</strong>线框图阶段讨论配色和字体，是效率陷阱。先确认结构与内容，视觉问题留给样式层。</div>
+
+          <h2 id="stack">5. 选择技术路线</h2>
+          <p>对绝大多数展示型网站（作品集、博客、企业介绍、活动页），静态网站就足够：HTML + CSS + JavaScript，无需数据库与后端。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>方案</th><th>适合</th><th>复杂度</th></tr></thead>
+              <tbody>
+                <tr><td>纯静态 HTML/CSS/JS</td><td>作品集、落地页、文档站</td><td>最低，本教程路线</td></tr>
+                <tr><td>静态站点生成器</td><td>博客、大量重复页面的内容站</td><td>中等，需要命令行基础</td></tr>
+                <tr><td>动态网站 / CMS</td><td>需要登录、评论、后台编辑的内容站</td><td>较高，涉及数据库</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="checklist">6. 出发前的规划清单</h2>
+          <p>勾选状态会自动保存在浏览器里，方便你分次完成。</p>
+          <div class="checklist">
+            <label><input type="checkbox" id="p1"><span>写出一句话网站目标</span></label>
+            <label><input type="checkbox" id="p2"><span>列出 2～3 张用户卡片</span></label>
+            <label><input type="checkbox" id="p3"><span>画出一棵不超过三层的网站地图</span></label>
+            <label><input type="checkbox" id="p4"><span>准备每个页面的核心文案</span></label>
+            <label><input type="checkbox" id="p5"><span>画出手机端线框图</span></label>
+            <label><input type="checkbox" id="p6"><span>确定技术路线与开发工具</span></label>
+          </div>
+
+          <div class="pager">
+            <a href="../index.html"><small>返回</small>← 五层路线图</a>
+            <a href="html.html"><small>下一层</small>结构层：搭骨架 →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand"><span class="brand-mark">⌘</span><span>建站学院<small>WEB CRAFT</small></span></div>
+          <p>把复杂的事情，拆成看得懂的五层。<br>原创插画 · 原创代码 · 全站相对路径 · 纯静态教学站点。</p>
+        </div>
+        <div><h4>五层教程</h4><div class="footer-links">
+          <a href="plan.html">① 规划层</a><a href="html.html">② 结构层</a><a href="css.html">③ 样式层</a><a href="javascript.html">④ 交互层</a><a href="deploy.html">⑤ 部署层</a>
+        </div></div>
+        <div><h4>快速导航</h4><div class="footer-links">
+          <a href="../index.html#roadmap">学习路线</a><a href="../index.html#flow">制作流程</a><a href="../index.html#code">代码示例</a><a href="../index.html#faq">常见问题</a>
+        </div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> 建站学院 · 从零做出一个网站</span><span>HTML · CSS · JavaScript · 五层递进</span></div>
+    </div>
+  </footer>
+  <button class="to-top" aria-label="返回顶部">↑</button>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
